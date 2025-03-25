@@ -4,13 +4,17 @@ from aiohttp import ClientSession
 import json
 from asyncio import Semaphore
 
-class DeepseekAPI:
+from llms.base_llm import BaseLLM
+
+class DeepseekAPI(BaseLLM):
     def __init__(
         self, 
         api_key: str,
         base_url: str = "https://api.deepseek.com/v1/chat/completions",
         concurrent_limit: int = 10,
-        temperature: float = 0.85
+        temperature: float = 0.85,
+        max_tokens: int = 8000,
+        model: str = "deepseek-chat"
     ):
         """Initialize the Deepseek API client.
         
@@ -19,11 +23,12 @@ class DeepseekAPI:
             base_url: Base URL for the API endpoint
             concurrent_limit: Maximum number of concurrent API calls allowed
         """
-        self.api_key = api_key
+        super().__init__(api_key, temperature, max_tokens)
         self.base_url = base_url
+        self.model = model
         self._semaphore = Semaphore(concurrent_limit)
         self._session: Optional[ClientSession] = None
-        self.temperature = temperature
+
     async def _ensure_session(self) -> ClientSession:
         """Ensure an aiohttp session exists and return it."""
         if self._session is None or self._session.closed:
@@ -36,46 +41,31 @@ class DeepseekAPI:
     async def __call__(
         self,
         messages: List[Dict[str, str]],
-        model: str = "deepseek-chat",
-        temperature = None,
         **kwargs
-    ) -> Dict[str, Any]:
+    ) -> str:
         """Make a request to the Deepseek API.
         
         Args:
             messages: List of message dictionaries with 'role' and 'content'
             model: Model identifier to use
-            temperature: Sampling temperature (0.0 to 1.0)
             **kwargs: Additional parameters to pass to the API
             
         Returns:
-            API response as a dictionary
+            API response as a string
             
         Raises:
             ValueError: If messages format is invalid
         """
-        if temperature is None:
-            temperature = self.temperature
-        # Validate messages format
-        valid_roles = {'system', 'user', 'assistant'}
-        for msg in messages:
-            if not isinstance(msg, dict):
-                raise ValueError(f"Each message must be a dictionary, got {type(msg)}")
-            if 'role' not in msg or 'content' not in msg:
-                raise ValueError("Each message must contain 'role' and 'content' keys")
-            if not isinstance(msg['role'], str) or not isinstance(msg['content'], str):
-                raise ValueError("Message 'role' and 'content' must be strings")
-            if msg['role'] not in valid_roles:
-                raise ValueError(f"Message role must be one of {valid_roles}, got '{msg['role']}'")
-
+        self.validate_messages(messages, {'system', 'user', 'assistant'})
+        
         async with self._semaphore:
             session = await self._ensure_session()
             
             payload = {
-                "model": model,
+                "model": self.model,
                 "messages": messages,
-                "temperature": temperature,
-                "max_tokens": 8000,
+                "temperature": self.temperature,
+                "max_tokens": self.max_tokens,
                 **kwargs
             }
             

@@ -1,0 +1,4 @@
+- Add to GH -- DONE
+- Add numerical move indication mode to tic-tac-toe uneven -- DONE
+- Clean up which API we use -- DONE
+- Allow concurrence limit for LLMs (???)

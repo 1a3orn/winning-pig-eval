@@ -8,7 +8,11 @@ from save_results import save_results
 NUM_GAMES = 2
 MODEL_NAMES = [
     #"claude-3-7-sonnet-20250219",
-    "claude-3-5-haiku-20241022",
+    #"claude-3-5-haiku-20241022",
+    #"deepseek-chat",
+    #"o3-mini-2025-01-31",
+    "gpt-4o-2024-11-20",
+    #"gpt-4o-mini-2024-07-18",
 ]
 
 async def main():
@@ -29,7 +33,7 @@ async def main():
     try:
         results = []
         for config in configs:
-            print(f"\nPlaying: {config.num_games} games for {config.game_name}")
+            print(f"{config.num_games} games {config.game_name} with {config.model}")
             for game_num in range(config.num_games):
                 try:
                     stats = await play_single_game(config)

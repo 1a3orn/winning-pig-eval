@@ -35,7 +35,7 @@ Rules:
 - Player 1 places horizontal dominos (occupying two columns in one row)
 - Dominos cannot overlap or extend beyond the board
 - A player who cannot make a legal move loses
-- The last player to make a legal move WINS
+- Important: The last player to make a legal move WINS
 
 To make a move, specify the top-left coordinate of where you want to place your domino:
 - Format: 'row,col'
@@ -99,7 +99,7 @@ To make a move, specify the top-left coordinate of where you want to place your 
 
     def __str__(self) -> str:
         result = f"Turn: Player {self.player_to_move}"
-        result += " (Vertical)" if self.player_to_move == 0 else " (Horizontal)\n"
+        result += " (Vertical)\n" if self.player_to_move == 0 else " (Horizontal)\n"
         
         # Add column numbers with proper spacing for 2-digit numbers
         col_width = len(str(self.size - 1)) + 1

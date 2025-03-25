@@ -8,7 +8,8 @@ from play_dataclasses import GameStats
 def save_results(results: List[GameStats]):
     # Create results directory with timestamp
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    results_dir = f"{timestamp}_results"
+    base_results_dir = "results"
+    results_dir = os.path.join(base_results_dir, timestamp)
     os.makedirs(results_dir, exist_ok=True)
 
     # Convert results to DataFrame

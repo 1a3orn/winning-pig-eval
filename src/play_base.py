@@ -1,26 +1,9 @@
 import os
-import json
-from typing import Dict, List, Type, Tuple
-import asyncio
-from dataclasses import dataclass
-from collections import defaultdict
+from typing import Dict, List, Tuple
 
-from llms.anthropic import AnthropicAPI
-from llms.deepseek import DeepseekAPI
-from games.tic_tac_toe_uneven import (
-    TicTacToeUnevenState,
-    TicTacToe3x4,
-    TicTacToe4x3,
-    TicTacToe5x6with4inrow,
-    TicTacToe6x5with4inrow
-)
-from mcts.mcts_playout import playout
-from mcts.mcts_engine import MCTSEngine
+from llms.get_llm import get_llm
 from mcts.abstract_game import AbstractGameState
-
-from llms.anthropic import AnthropicAPI
-from llms.deepseek import DeepseekAPI
-
+from mcts.mcts_engine import MCTSEngine
 from play_dataclasses import GameConfig, GameStats
 
 async def play_single_game(config: GameConfig) -> Tuple[int, int, int, int, List[Dict[str, str]]]:
@@ -127,14 +110,11 @@ def handle_mcts_turn(
 
 async def get_llm_move(
     model: str,
-    state: TicTacToeUnevenState,
+    state: AbstractGameState,
     messages: List[Dict[str, str]],
 ) -> str:
 
-    if 'claude' in model:
-        llm = AnthropicAPI(os.getenv("ANTHROPIC_API_KEY"), temperature=0.6, model=model)
-    else:
-        llm = DeepseekAPI(os.getenv("DEEPSEEK_API_KEY"), temperature=0.6, model=model)
+    llm = get_llm(model)
 
     response = await llm(messages)
     

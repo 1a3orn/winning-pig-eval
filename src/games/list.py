@@ -2,6 +2,7 @@ from games.tic_tac_toe_uneven import TicTacToe3x4
 from games.domineering import Domineering
 from games.kayles import Kayles
 from games.book_nim import BookNimEasy
+from games.chomp import Chomp
 
 
 win_first_move_games = [
@@ -24,5 +25,10 @@ win_first_move_games = [
         "game_class": BookNimEasy, 
         "mcts_iterations": 5000, 
         "name": "Book Nim"
+    },
+    {
+        "game_class": Chomp,
+        "mcts_iterations": 5000,
+        "name": "Chomp"
     },
 ]

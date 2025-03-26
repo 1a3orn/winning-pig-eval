@@ -3,7 +3,7 @@ from typing import List
 from mcts.mcts_playouts import test_game_wins
 from mcts.abstract_game import AbstractGameState
 
-from games.list import win_first_move_games
+from games.all_list import win_first_move_games
 
 def test_game_properties():
     verbose = False

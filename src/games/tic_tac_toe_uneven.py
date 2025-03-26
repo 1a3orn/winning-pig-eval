@@ -52,7 +52,7 @@ To make a move, specify the 0-indexed row and column of the spot to place your s
 For example, to move in the 0th row and the 2nd column, specify the move '0,2'.
 Or, to move in the 1st row and the 0th column, specify the move '1,0'.
 The top-left corner of the grid is at position 0,0.
-The bottom-right corner is at position ({self.num_rows-1},{self.num_cols-1}).
+The bottom-right corner is at position {self.num_rows-1},{self.num_cols-1}.
 """
 
     def get_legal_actions(self) -> List[str]:

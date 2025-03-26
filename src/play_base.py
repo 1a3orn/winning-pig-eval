@@ -54,26 +54,27 @@ async def play_single_game(config: GameConfig) -> Tuple[int, int, int, int, List
 def create_system_prompt(state: AbstractGameState) -> str:
     return f"""
 You are playing a game of {state.get_name()}.
-You are playing as X and will move first.
+You will move first. Your only goal is to win the game.
 Here are the detailed rules for the game:
 --------------------------------
 {state.get_detailed_rules()}
 --------------------------------
 The above were the detailed rules of the game.
 
-For each turn, you will see the board state and your available moves.
+For each turn, you will see the game state and your available moves.
+Your only goal is to win the game.
 Please respond with your chosen move inside <move>...</move> XML tags.
-Please think through the strategic implications carefully before making your move.
+You may think through the strategic implications carefully before making your move.
 """
 
 def create_turn_prompt(state: AbstractGameState, to_prepend_next_message: str) -> str:
     return f"""{to_prepend_next_message if to_prepend_next_message else ''}
-Current board state:
+Current game state:<m
 {str(state)}
 
 Your available moves are: {', '.join(state.get_legal_actions())}
 
-What is your next move? Think through the strategic implications carefully, then respond with your move in <move>...</move> tags."""
+What is your next move? Think as long as you need to, then respond with your move in <move>...</move> tags."""
 
 async def handle_llm_turn(
     model: str,
@@ -100,9 +101,9 @@ def handle_mcts_turn(
     new_state = state.take_action(result)
     
     message_content = (
-        create_turn_prompt(new_state, f"Your opponent played at position {result}.")
+        create_turn_prompt(new_state, f"Your opponent played move '{result}'.")
         if not new_state.is_terminal()
-        else f"Your opponent played at position {result}. Game over."
+        else f"Your opponent played move '{result}'. Game over."
     )
     messages.append({"role": "user", "content": message_content})
     

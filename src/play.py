@@ -1,18 +1,19 @@
 import asyncio
 from play_base import play_single_game
 from play_dataclasses import GameConfig, GameStats
-from games.list import win_first_move_games
+from games.all_list import win_first_move_games
 from save_results import save_results
 
 # Constants
-NUM_GAMES = 2
+NUM_GAMES = 1
 MODEL_NAMES = [
     #"claude-3-7-sonnet-20250219",
     #"claude-3-5-haiku-20241022",
     #"deepseek-chat",
     #"o3-mini-2025-01-31",
-    "gpt-4o-2024-11-20",
+    # "gpt-4o-2024-11-20",
     #"gpt-4o-mini-2024-07-18",
+    "human_terminal",
 ]
 
 async def main():

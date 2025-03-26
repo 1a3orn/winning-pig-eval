@@ -4,7 +4,7 @@ from llms.base_llm import BaseLLM
 from llms.deepseek import DeepseekAPI
 from llms.anthropic import AnthropicAPI
 from llms.openai import OpenAIAPI
-
+from llms.human_terminal import HumanTerminal
 def get_llm(
     model: str,
     temperature: float = 0.6
@@ -28,6 +28,8 @@ def get_llm(
             temperature=temperature,
             model=model
         )
+    elif model == 'human_terminal':
+        llm = HumanTerminal()
     else:
         raise ValueError(f"Invalid model: {model}")
 

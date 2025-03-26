@@ -13,13 +13,13 @@ from games.connect_n import ConnectThree4x5, ConnectThree5x4
 win_first_move_games = [
     { 
         "game_class": TicTacToe3x4, 
-        "mcts_iterations": 4000,
+        "mcts_iterations": 8000,
         "name": "Tic Tac Toe (3x4, 3-in-a-row)",
         "category": "grid"
     },
     { 
         "game_class": TicTacToe4x3, 
-        "mcts_iterations": 4000,
+        "mcts_iterations": 8000,
         "name": "Tic Tac Toe (4x3, 3-in-a-row)",
         "category": "grid"
     },
@@ -79,13 +79,13 @@ win_first_move_games = [
     },
     {
         "game_class": ConnectThree4x5,
-        "mcts_iterations": 800,
+        "mcts_iterations": 1500,
         "name": "Connect 3 (4x5)",
         "category": "grid"
     },
     {
         "game_class": ConnectThree5x4,
-        "mcts_iterations": 800,
+        "mcts_iterations": 1500,
         "name": "Connect 3 (5x4)",
         "category": "grid"
     },

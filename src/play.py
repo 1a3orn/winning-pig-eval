@@ -29,6 +29,7 @@ async def main():
         )
         for game_config in win_first_move_games
         for model in MODEL_NAMES
+        if game_config['name'] == "Connect 3 (5x4)"
     ]
     
     try:

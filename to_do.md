@@ -12,9 +12,10 @@ DONE
 - Add Connect 3 -- DONE
 - Check that these 8 all win first, with runs of size 36 -- DONE
 - Add manual mode for playing -- DONE
+- Play against all games -- DONE
 
 TODO
-- Play against all games
+- Add "Winning strategy" to each game, if possible.
 - Need to add column numbers for Coin Counter
 - Check that against all AIs when playing manual mode
 - Run Haiku / GPT-4o / DeepSeekV3 against everything, check for bugs

@@ -6,9 +6,9 @@ from mcts.abstract_game import AbstractGameState
 from games.all_list import win_first_move_games
 
 def test_game_properties():
-    verbose = False
+    verbose = True
     num_tests = 50  # Default number of tests for perfect play
-    games = [game_config for game_config in win_first_move_games if game_config["name"] == "Connect 3 (4x5)" or game_config["name"] == "Connect 3 (5x4)"]
+    games = [game_config for game_config in win_first_move_games if game_config["name"] == "Grundy's Game"]
 
     for game_config in games:
         game, iters = game_config["game_class"], game_config["mcts_iterations"]

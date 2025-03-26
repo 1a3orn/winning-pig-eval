@@ -29,7 +29,8 @@ Rules:
 - Two players alternate turns
 - On your turn, you must subtract a perfect square (1, 4, 9, 16, etc.) from the current number
 - The square you subtract must be less than or equal to the current number
-- The player who reduces the number below 1 wins
+- The player who reduces the number below 1 to 0 wins
+- You cannot subtract a square that is larger than the current number, i.e, make a negative number.
 
 Example:
 - If the current number is 13:
@@ -39,6 +40,7 @@ Example:
   * You cannot subtract 16 (too large)
 
 To make a move, specify the square number to subtract (e.g., '9' to subtract 9)
+Again, you win if you are the one who reduces the number to 0.
 """
 
     def get_legal_actions(self) -> List[str]:

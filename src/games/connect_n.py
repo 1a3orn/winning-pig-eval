@@ -43,7 +43,10 @@ To make a move, specify the column number from column 0 to column {self.cols-1}
 
     def take_action(self, action: str) -> 'ConnectN':
         """Takes action and returns new state"""
-        col = int(action)
+        try:
+            col = int(action)
+        except ValueError:
+            raise ValueError("Invalid action: must be a string representing an integer")
         if not (0 <= col < self.cols):
             raise ValueError("Invalid column")
         if self.board[0][col] != ' ':
@@ -54,6 +57,9 @@ To make a move, specify the column number from column 0 to column {self.cols-1}
         row = self.rows - 1
         while row >= 0 and new_board[row][col] != ' ':
             row -= 1
+        # Add safety check
+        if row < 0:
+            raise ValueError("Column is full")
         new_board[row][col] = self.symbols[self.player_to_move]
 
         return ConnectN(self.rows, self.cols, self.n_to_win, new_board, 1 - self.player_to_move)
@@ -119,9 +125,9 @@ To make a move, specify the column number from column 0 to column {self.cols-1}
 
 class ConnectThree4x5(ConnectN):
     def __init__(self, board: List[List[str]] = None, player_to_move: int = 0, rows: int = 4, cols: int = 5, n_to_win: int = 3):
-        super().__init__(rows=4, cols=5, n_to_win=3, board=board, player_to_move=player_to_move)
+        super().__init__(rows=rows, cols=cols, n_to_win=n_to_win, board=board, player_to_move=player_to_move)
 
 
 class ConnectThree5x4(ConnectN):
     def __init__(self, board: List[List[str]] = None, player_to_move: int = 0, rows: int = 5, cols: int = 4, n_to_win: int = 3):
-        super().__init__(rows=5, cols=4, n_to_win=3, board=board, player_to_move=player_to_move)
+        super().__init__(rows=rows, cols=cols, n_to_win=n_to_win, board=board, player_to_move=player_to_move)

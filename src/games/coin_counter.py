@@ -117,8 +117,10 @@ Two players take turns placing coins on a 3x3 grid, which starts with one coin a
     def __str__(self) -> str:
         """Returns string representation of the game state"""
         result = f"Player {self._player_to_move}'s turn\n"
+        result += "  0   1   2\n"  # Column numbers
         for row in range(3):
+            result += f"{row} "  # Row numbers
             result += " | ".join(str(cell) for cell in self.grid[row])
             if row < 2:
-                result += "\n---------\n"
+                result += "\n  ---------\n"
         return result

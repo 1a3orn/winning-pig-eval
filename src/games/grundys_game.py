@@ -27,7 +27,7 @@ Rules:
 - Heaps of size 1 or 2 cannot be split
 - You can only split one heap per turn
 - The game ends when no legal moves remain (all heaps are size 1 or 2)
-- The last player who can make a legal move wins
+- The LAST player who can make a legal move wins
 
 Example:
 - A heap of 5 can be split into:

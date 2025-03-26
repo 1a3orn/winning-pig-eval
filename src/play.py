@@ -5,12 +5,12 @@ from games.all_list import win_first_move_games
 from save_results import save_results
 
 # Constants
-NUM_GAMES = 5
+NUM_GAMES = 10
 MODEL_NAMES = [
     #"claude-3-7-sonnet-20250219",
     #"claude-3-5-haiku-20241022",
     "deepseek-chat",
-    "deepseek-reasoner",
+    #"deepseek-reasoner",
     #"o3-mini-2025-01-31",
     # "gpt-4o-2024-11-20",
     #"gpt-4o-mini-2024-07-18",

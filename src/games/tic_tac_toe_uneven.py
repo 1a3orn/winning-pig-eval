@@ -53,6 +53,7 @@ For example, to move in the 0th row and the 2nd column, specify the move '0,2'.
 Or, to move in the 1st row and the 0th column, specify the move '1,0'.
 The top-left corner of the grid is at position 0,0.
 The bottom-right corner is at position {self.num_rows-1},{self.num_cols-1}.
+You will be playing as {self.symbols[self.player_to_move]}.
 """
 
     def get_legal_actions(self) -> List[str]:

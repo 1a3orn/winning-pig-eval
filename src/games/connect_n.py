@@ -37,6 +37,7 @@ Rules:
 - If the board fills up with no winner, it's a draw
 
 To make a move, specify the column number from column 0 to column {self.cols-1}
+You will be playing with {self.symbols[self.player_to_move]}.
 """
 
     def get_legal_actions(self) -> List[str]:

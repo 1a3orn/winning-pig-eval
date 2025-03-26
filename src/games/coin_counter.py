@@ -37,7 +37,7 @@ Two players take turns placing coins on a 3x3 grid, which starts with one coin a
         - Two players alternate turns, until one player wins.
         - Each player places on coin on a spot in the grid per turn, which increases the number of coins in that spot by 1.
         - The maximum number of coins per spot is 2.
-        - A player wins if they make a row of 1-1-1 or 2-2-2 coins in a line.
+        - A player wins if THEY are the one whose move makes a row of 1-1-1 or 2-2-2 coins in a line.
         - The row may be horizontal, vertical, or along the diagonal.
 
         To move, indicated the zero-indexed row and column of the spot you want to place a coin on.

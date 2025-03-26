@@ -37,13 +37,21 @@ async def main():
         for config in configs:
             print(f"{config.num_games} games {config.game_name} with {config.model}")
             for game_num in range(config.num_games):
-                print(f"Game {game_num + 1} of {config.num_games}")
-                try:
-                    stats = await play_single_game(config)
-                    results.append(stats)
-                except Exception as e:
-                    print(f"Error in game {game_num + 1} for {config.game_name}: {str(e)}")
-                    continue
+                attempts = 0
+                max_attempts = 3
+                while attempts < max_attempts:
+                    try:
+                        print(f"Game {game_num + 1} of {config.num_games} (Attempt {attempts + 1}/{max_attempts})")
+                        stats = await play_single_game(config)
+                        results.append(stats)
+                        break  # Success - exit retry loop
+                    except Exception as e:
+                        attempts += 1
+                        if attempts == max_attempts:
+                            print(f"Failed all {max_attempts} attempts for game {game_num + 1} of {config.game_name}: {str(e)}")
+                        else:
+                            print(f"Attempt {attempts} failed for game {game_num + 1} of {config.game_name}: {str(e)}")
+                            continue
         
         save_results(results)
     except Exception as e:

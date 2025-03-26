@@ -22,6 +22,7 @@ class TicTacToeUnevenState(AbstractGameState):
         self.num_in_a_row = num_in_a_row
         self.board = board if board is not None else [['' for _ in range(num_cols)] for _ in range(num_rows)]
         self.player_to_move = player_to_move
+        self.symbols = ['X', 'O']
 
     def get_short_game_description(self) -> str:
         return f"""

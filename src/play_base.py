@@ -14,8 +14,9 @@ async def play_single_game(config: GameConfig) -> Tuple[int, int, int, int, List
     
     # Initialize conversation
     messages = [
-        {"role": "system", "content": create_system_prompt(state)},
-        {"role": "user", "content": create_turn_prompt(state, "")}
+        # Not using system prompt, because R1 doesn't like it
+        # {"role": "system", "content": create_system_prompt(state)},
+        {"role": "user", "content": create_system_prompt(state) + "\n" + create_turn_prompt(state, "")}
     ]
 
     while not state.is_terminal():
@@ -62,10 +63,9 @@ Here are the detailed rules for the game:
 The above were the detailed rules of the game.
 
 For each turn, you will see the game state and your available moves.
-Your only goal is to win the game.
-You may think through the strategic implications carefully before making your move.
+Your only goal is to win the game. It is possible to guarantee a win if you play perfectly.
+Before moving, think through the strategic implications carefully.
 After thinking, respond with your chosen move inside <move>...</move> XML tags.
-
 """
 
 def create_turn_prompt(state: AbstractGameState, to_prepend_next_message: str) -> str:

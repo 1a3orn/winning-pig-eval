@@ -5,15 +5,16 @@ from games.all_list import win_first_move_games
 from save_results import save_results
 
 # Constants
-NUM_GAMES = 1
+NUM_GAMES = 5
 MODEL_NAMES = [
     #"claude-3-7-sonnet-20250219",
     #"claude-3-5-haiku-20241022",
-    #"deepseek-chat",
+    "deepseek-chat",
+    "deepseek-reasoner",
     #"o3-mini-2025-01-31",
     # "gpt-4o-2024-11-20",
     #"gpt-4o-mini-2024-07-18",
-    "human_terminal",
+    #"human_terminal",
 ]
 
 async def main():
@@ -29,7 +30,6 @@ async def main():
         )
         for game_config in win_first_move_games
         for model in MODEL_NAMES
-        if game_config['name'] == "Connect 3 (5x4)"
     ]
     
     try:
@@ -37,6 +37,7 @@ async def main():
         for config in configs:
             print(f"{config.num_games} games {config.game_name} with {config.model}")
             for game_num in range(config.num_games):
+                print(f"Game {game_num + 1} of {config.num_games}")
                 try:
                     stats = await play_single_game(config)
                     results.append(stats)

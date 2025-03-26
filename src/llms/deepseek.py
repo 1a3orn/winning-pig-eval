@@ -2,7 +2,6 @@ import asyncio
 from typing import List, Dict, Any, Optional
 from aiohttp import ClientSession
 import json
-from asyncio import Semaphore
 
 from llms.base_llm import BaseLLM
 
@@ -10,23 +9,18 @@ class DeepseekAPI(BaseLLM):
     def __init__(
         self, 
         api_key: str,
-        base_url: str = "https://api.deepseek.com/v1/chat/completions",
-        concurrent_limit: int = 10,
         temperature: float = 0.85,
-        max_tokens: int = 8000,
+        max_tokens: int = 8192,  # Changed to match Anthropic's default
         model: str = "deepseek-chat"
     ):
         """Initialize the Deepseek API client.
         
         Args:
             api_key: API key for authentication
-            base_url: Base URL for the API endpoint
-            concurrent_limit: Maximum number of concurrent API calls allowed
         """
         super().__init__(api_key, temperature, max_tokens)
-        self.base_url = base_url
+        self.base_url = "https://api.deepseek.com/v1/chat/completions"
         self.model = model
-        self._semaphore = Semaphore(concurrent_limit)
         self._session: Optional[ClientSession] = None
 
     async def _ensure_session(self) -> ClientSession:
@@ -40,34 +34,42 @@ class DeepseekAPI(BaseLLM):
 
     async def __call__(
         self,
-        messages: List[Dict[str, str]],
+        messages: List[Dict[str, Any]],  # Changed to match Anthropic's type hint
         **kwargs
     ) -> str:
-        """Make a request to the Deepseek API.
-        
-        Args:
-            messages: List of message dictionaries with 'role' and 'content'
-            model: Model identifier to use
-            **kwargs: Additional parameters to pass to the API
-            
-        Returns:
-            API response as a string
-            
-        Raises:
-            ValueError: If messages format is invalid
-        """
+        """Make a request to the Deepseek API."""
         self.validate_messages(messages, {'system', 'user', 'assistant'})
         
-        async with self._semaphore:
-            session = await self._ensure_session()
+        # Handle system prompt like Anthropic
+        system_prompt = None
+        if len(messages) > 0 and messages[0]["role"] == "system":
+            system_prompt = messages[0]["content"]
+            messages = messages[1:]
+        
+        if system_prompt and len(messages) == 0:
+            raise ValueError("No messages provided")
             
+        if any(message["role"] == "system" for message in messages):
+            raise ValueError("System prompt must be in the first message")
+
+        # Create a new session for each call if none exists
+        should_close_session = self._session is None
+        session = await self._ensure_session()
+        
+        try:
             payload = {
                 "model": self.model,
                 "messages": messages,
                 "temperature": self.temperature,
-                "max_tokens": self.max_tokens,
-                **kwargs
+                "max_tokens": self.max_tokens
             }
+            
+            # Add system prompt to payload if it exists
+            if system_prompt:
+                payload["system"] = system_prompt
+                
+            # Add any additional kwargs
+            payload.update(kwargs)
             
             async with session.post(self.base_url, json=payload) as response:
                 if response.status != 200:
@@ -75,6 +77,9 @@ class DeepseekAPI(BaseLLM):
                     raise Exception(f"API request failed: {error_text}")
                 values = await response.json()
                 return values['choices'][0]['message']['content']
+        finally:
+            if should_close_session:
+                await self.close()
 
     async def close(self):
         """Close the API client session."""

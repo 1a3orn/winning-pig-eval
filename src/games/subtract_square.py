@@ -8,7 +8,7 @@ class SubtractSquare(AbstractGameState):
     - 
 
     """
-    def __init__(self, number: int = 16, player_to_move: int = 0):
+    def __init__(self, number: int = 13, player_to_move: int = 0):
         self.number = number
         self.player_to_move = player_to_move
 

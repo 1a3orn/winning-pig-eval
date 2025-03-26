@@ -5,7 +5,7 @@ from games.all_list import win_first_move_games
 from save_results import save_results
 
 # Constants
-NUM_GAMES = 10
+NUM_GAMES = 8
 MODEL_NAMES = [
     #"claude-3-7-sonnet-20250219",
     #"claude-3-5-haiku-20241022",

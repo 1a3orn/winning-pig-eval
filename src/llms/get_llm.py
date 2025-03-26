@@ -7,7 +7,7 @@ from llms.openai import OpenAIAPI
 from llms.human_terminal import HumanTerminal
 def get_llm(
     model: str,
-    temperature: float = 0.6
+    temperature: float = 0.7
 ) -> BaseLLM:
 
     if 'claude' in model:

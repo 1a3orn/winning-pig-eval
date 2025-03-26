@@ -63,13 +63,14 @@ The above were the detailed rules of the game.
 
 For each turn, you will see the game state and your available moves.
 Your only goal is to win the game.
-Please respond with your chosen move inside <move>...</move> XML tags.
 You may think through the strategic implications carefully before making your move.
+After thinking, respond with your chosen move inside <move>...</move> XML tags.
+
 """
 
 def create_turn_prompt(state: AbstractGameState, to_prepend_next_message: str) -> str:
     return f"""{to_prepend_next_message if to_prepend_next_message else ''}
-Current game state:<m
+Current game state:
 {str(state)}
 
 Your available moves are: {', '.join(state.get_legal_actions())}

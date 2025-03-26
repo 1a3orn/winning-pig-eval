@@ -17,7 +17,8 @@ class ConnectN(AbstractGameState):
     def get_short_game_description(self) -> str:
         return f"""
 A {self.rows}x{self.cols} board game where players take turns dropping {self.symbols[0]} or {self.symbols[1]} into columns.
-Connect {self.n_to_win} in a row (horizontally, vertically, or diagonally) to win.
+Connect {self.n_to_win} in a line (horizontally, vertically, or diagonally) to win.
+The line must be uninterrupted.
 """
 
     def get_detailed_rules(self) -> str:
@@ -30,8 +31,9 @@ Rules:
 - Player 0 uses '{self.symbols[0]}', Player 1 uses '{self.symbols[1]}'
 - On your turn, drop your symbol in any non-full column
 - Pieces stack from bottom to top in each column
-- First to connect {self.n_to_win} of their symbols in a row wins
-  (horizontally, vertically, or diagonally)
+- First to connect {self.n_to_win} of their symbols in a continuous line wins
+- The line must be uninterrupted.
+- The line may be horizontal, vertical, or diagonal.
 - If the board fills up with no winner, it's a draw
 
 To make a move, specify the column number from column 0 to column {self.cols-1}

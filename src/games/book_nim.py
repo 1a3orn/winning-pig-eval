@@ -21,7 +21,7 @@ class BookNim(AbstractGameState):
         return """
 Players take turns removing any number of books from a single shelf.
 The game starts with three shelves containing various numbers of books.
-The player who takes the last book loses.
+The player who takes the last book LOSES in this version of the game.
 """
 
     def get_detailed_rules(self) -> str:
@@ -33,8 +33,7 @@ Rules:
 - On your turn, you must remove at least one book from exactly one shelf
 - You may remove any number of books from your chosen shelf, up to all books on that shelf
 - You cannot remove books from multiple shelves in a single turn
-- The player who takes the last book loses
-- If no books remain and you cannot make a move, you lose
+- The player who takes the last book LOSES
 
 To make a move, specify the shelf number and number of books to remove.
 For example, to remove 2 books from shelf 1, specify the move '1,2'.

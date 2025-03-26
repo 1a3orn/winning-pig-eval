@@ -13,15 +13,18 @@ class CoinCounterGridState(AbstractGameState):
     def __init__(self, grid: List[List[int]] = None, player_to_move: int = 0):
         """
         Initialize the game state.
-        grid: 3x3 grid where each cell contains number of coins (0-3)
+        grid: 3x3 grid where each cell contains 0, 1 or 2 coins
         player_to_move: 0 or 1, indicating whose turn it is
         """
-        self.grid = grid if grid is not None else [[0 for _ in range(3)] for _ in range(3)]
+        if grid is None:
+            grid = [[0 for _ in range(3)] for _ in range(3)]
+            grid[0][0] = 1
+        self.grid = grid
         self._player_to_move = player_to_move
 
     def get_short_game_description(self) -> str:
         return """\
-Two players take turns placing coins on a 3x3 grid. Each player places one coin per move, and up to a total of three coins can be placed per spot in the grid. If your move makes three-in-a-row of 1 coins, 2 coins, or 3 coins, then you win.
+Two players take turns placing coins on a 3x3 grid, which starts with one coin at 0,0. Each player places one coin per move, and up to a total of two coins can be placed per spot in the grid. If your move makes three-in-a-line of 1 coins or 2 coins then you win.
 """
 
     def get_name(self) -> str:
@@ -29,13 +32,18 @@ Two players take turns placing coins on a 3x3 grid. Each player places one coin 
 
     def get_detailed_rules(self) -> str:
         return """\
-        Start condition: An empty 3 x 3 grid.
+        Start condition: A 3 x 3 grid with one coin at the 0,0 spot in the upper left corner, and empty otherwise.
         Rules:
         - Two players alternate turns, until one player wins.
         - Each player places on coin on a spot in the grid per turn, which increases the number of coins in that spot by 1.
-        - The maximum number of coins per spot is 3.
-        - A player wins if they make a row of 1-1-1, 2-2-2, or 3-3-3 coins in a row.
+        - The maximum number of coins per spot is 2.
+        - A player wins if they make a row of 1-1-1 or 2-2-2 coins in a line.
         - The row may be horizontal, vertical, or along the diagonal.
+
+        To move, indicated the zero-indexed row and column of the spot you want to place a coin on.
+        For example, to move in the upper-left corner, specify '0,0'.
+        To move in the center, specify '1,1'.
+        To move in the bottom-right corner, specify '2,2'.
         """
 
     def get_legal_actions(self) -> List[str]:
@@ -43,7 +51,7 @@ Two players take turns placing coins on a 3x3 grid. Each player places one coin 
         actions = []
         for row in range(3):
             for col in range(3):
-                if self.grid[row][col] < 3:  # Can add a coin if less than 3 coins
+                if self.grid[row][col] < 2:  # Can add a coin if less than 3 coins
                     actions.append(f"{row},{col}")
         return actions
 
@@ -52,8 +60,8 @@ Two players take turns placing coins on a 3x3 grid. Each player places one coin 
         row, col = map(int, action.split(','))
         if not (0 <= row < 3 and 0 <= col < 3):
             raise ValueError("Invalid position")
-        if self.grid[row][col] >= 3:
-            raise ValueError("Cannot place more than 3 coins in a position")
+        if self.grid[row][col] > 2:
+            raise ValueError("Cannot place more than 2 coins in a position")
 
         # Create new state with updated grid
         new_grid = copy.deepcopy(self.grid)
@@ -101,8 +109,7 @@ Two players take turns placing coins on a 3x3 grid. Each player places one coin 
             else:
                 return (-1.0, 1.0)
         
-        # If no winner but game is terminal, it's a draw
-        return (0.0, 0.0)
+        raise ValueError("Game is not over")
 
     def get_player_to_move(self) -> int:
         return self._player_to_move

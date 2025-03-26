@@ -23,7 +23,7 @@ The player who reduces the number below 1 wins.
 
     def get_detailed_rules(self) -> str:
         return """
-Start condition: Game starts with a number (typically 13).
+Start condition: Game starts with some number.
 
 Rules:
 - Two players alternate turns
@@ -55,6 +55,10 @@ Again, you win if you are the one who reduces the number to 0.
     def take_action(self, action: str) -> 'SubtractSquare':
         """Takes action (a square number) and returns new state"""
         square = int(action)
+
+        # Check not negative
+        if square <= 0:
+            raise ValueError("Cannot subtract a non-positive number")
         
         # Validate the move
         if square > self.number:

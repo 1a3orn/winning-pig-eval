@@ -26,7 +26,7 @@ class TicTacToeUnevenState(AbstractGameState):
     def get_short_game_description(self) -> str:
         return f"""
 Two players alternate turns, placing 'X' and 'O' alternately on empty spots on a grid with {self.num_rows} rows and {self.num_cols} columns.
-That is, they place their symbol on a spot with row index {row} and column index {col}, where 0 <= {row} <= {self.num_rows - 1} and 0 <= {col} <= {self.num_cols - 1}.
+That is, they place their symbol on a spot with row index N and column index M, where 0 <= N <= {self.num_rows - 1} and 0 <= M <= {self.num_cols - 1}.
 A player wins by getting {self.num_in_a_row} of their symbols in a row.
 Winning rows must be contiguous lines. Lines may be horizontal, vertical, or diagonal.
 """

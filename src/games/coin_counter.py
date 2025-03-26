@@ -51,7 +51,7 @@ Two players take turns placing coins on a 3x3 grid, which starts with one coin a
         actions = []
         for row in range(3):
             for col in range(3):
-                if self.grid[row][col] < 2:  # Can add a coin if less than 3 coins
+                if self.grid[row][col] < 2:  # Can add a coin if less than 2 coin
                     actions.append(f"{row},{col}")
         return actions
 
@@ -60,7 +60,7 @@ Two players take turns placing coins on a 3x3 grid, which starts with one coin a
         row, col = map(int, action.split(','))
         if not (0 <= row < 3 and 0 <= col < 3):
             raise ValueError("Invalid position")
-        if self.grid[row][col] > 2:
+        if self.grid[row][col] > 1:
             raise ValueError("Cannot place more than 2 coins in a position")
 
         # Create new state with updated grid

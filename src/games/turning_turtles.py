@@ -3,7 +3,6 @@ from mcts.abstract_game import AbstractGameState
 
 class TurningTurtles(AbstractGameState):
     def __init__(self, coins: List[bool] = None, player_to_move: int = 0):
-        # Initialize with 9 alternating coins by default, or use provided coins
         # True represents heads (H), False represents tails (T)
         if coins is None:
             self.coins = [True for i in range(5)] 
@@ -16,14 +15,14 @@ class TurningTurtles(AbstractGameState):
 
     def get_short_game_description(self) -> str:
         return """
-A game played with a row of coins showing heads and tails. Players take turns flipping
+A game played with a row of coins. Players take turns flipping
 a heads coin to tails, and optionally flipping one coin to its left either way. The player who
 flips the last heads coin to tails wins.
 """
 
     def get_detailed_rules(self) -> str:
         return """
-Start condition: A row of alternating heads and tails.
+Start condition: A row of coins that can be heads (H) or tails (T).
 
 Rules:
 - Two players alternate turns

@@ -3,7 +3,7 @@ from mcts.abstract_game import AbstractGameState
 
 class GrundysGame(AbstractGameState):
     def __init__(self, heaps: List[int] = None, player_to_move: int = 0):
-        # Initialize with default heap of 8 if no heaps provided
+        # Initialize with default heap of 11 if no heaps provided
         self.heaps = heaps if heaps is not None else [11]
         self.player_to_move = player_to_move
 
@@ -19,7 +19,7 @@ The last player able to make a valid move wins.
 
     def get_detailed_rules(self) -> str:
         return """
-Start condition: Game starts with a single heap of 8 objects.
+Start condition: Game starts with a single heap of objects.
 
 Rules:
 - Two players alternate turns
@@ -38,6 +38,8 @@ Example:
 
 To make a move, specify the heap index and the sizes of the two new heaps.
 Format: 'heap_index:size1,size2' (e.g., '0:3,2' splits heap at index 0 into sizes 3 and 2)
+
+Note that heaps will sorted after each move in descending order, so the largest heap is always at index 0.
 """
 
     def get_legal_actions(self) -> List[str]:

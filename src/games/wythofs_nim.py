@@ -10,7 +10,7 @@ class WythofsNim(AbstractGameState):
     player_to_move: int
 
     def __init__(self, piles: List[int] = None, player_to_move: int = 0):
-        # Initialize with [5, 8] by default, or use provided piles
+        # Initialize with [5, 6] by default, or use provided piles
         self.piles = piles if piles is not None else [5, 6]
         if len(self.piles) != 2:
             raise ValueError("Wythof's Nim must have exactly 2 piles")

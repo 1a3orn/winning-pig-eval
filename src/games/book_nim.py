@@ -10,7 +10,6 @@ class BookNim(AbstractGameState):
     player_to_move: int
 
     def __init__(self, shelves: List[int] = None, player_to_move: int = 0):
-        # Initialize with 1, 3, 4 books by default, or use provided shelves
         self.shelves = shelves if shelves is not None else [3, 4, 5]
         self.player_to_move = player_to_move
 
@@ -93,9 +92,12 @@ class BookNimEasy(BookNim):
         super().__init__(shelves if shelves is not None else [1, 3, 4], player_to_move)
 
     def get_name(self) -> str:
-        return "Book Nim"
+        return "Book Nim (Easy)"
 
 class BookNimHard(BookNim):
     def __init__(self, shelves: List[int] = None, player_to_move: int = 0):
         # Initialize with 2, 4, 5 books by default
         super().__init__(shelves if shelves is not None else [2, 4, 5], player_to_move)
+
+    def get_name(self) -> str:
+        return "Book Nim (Hard)"

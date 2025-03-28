@@ -11,13 +11,13 @@ MODEL_NAMES = [
     #"claude-3-5-haiku-20241022",
     #"claude-3-7-sonnet-20250219",
     #"gemini-2.5-pro-exp-03-25",
-    #"deepseek-chat",
+    "deepseek-chat",
     #"deepseek-reasoner",
     #"gpt-4o-2024-11-20",
     #"gpt-4.5-preview-2025-02-27",
     #"o3-mini-2025-01-31",
     #"o1-2024-12-17",
-    "claude-3-5-sonnet-20241022"
+    #"claude-3-5-sonnet-20241022"
     #"o3-mini-2025-01-31",
     # "gpt-4o-2024-11-20",
     #"gpt-4o-mini-2024-07-18",

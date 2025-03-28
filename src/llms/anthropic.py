@@ -30,11 +30,12 @@ class AnthropicAPI(BaseLLM):
         # Throw if system prompt is not in the first message
         if any(message["role"] == "system" for message in messages):
             raise ValueError("System prompt must be in the first message")
+
+        #print(messages)
         
         response = self.client.messages.create(
             model=self.model,
             messages=messages,
-            system=system_prompt,
             temperature=self.temperature,
             max_tokens=self.max_tokens,
             **kwargs

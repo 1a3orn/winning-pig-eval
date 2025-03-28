@@ -146,6 +146,7 @@ async def get_llm_move(
 
     llm = get_llm(model)
     response = await llm(messages)
+    #print(response)
     
     # Extract move from XML tags
     start_tag = "<move>"

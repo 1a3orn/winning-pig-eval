@@ -35,10 +35,12 @@ Two players take turns placing coins on a 3x3 grid, which starts with one coin a
         Start condition: A 3 x 3 grid with one coin at the 0,0 spot in the upper left corner, and empty otherwise.
         Rules:
         - Two players alternate turns, until one player wins.
-        - Each player places on coin on a spot in the grid per turn, which increases the number of coins in that spot by 1.
+        - Each player places one coin on a spot in the grid per turn, which increases the number of coins in that spot by 1.
         - The maximum number of coins per spot is 2.
         - A player wins if THEY are the one whose move makes a row of 1-1-1 or 2-2-2 coins in a line.
-        - The row may be horizontal, vertical, or along the diagonal.
+        - The line may be horizontal, vertical, or along the diagonal.
+        - Note that placed coins are used by EITHER player; there's no "ownership" of coins, and no "blocking" of spots.
+        - A winning line of 1-1-1 or 2-2-2 coins is counted as a win for the player who made the move.
 
         To move, indicated the zero-indexed row and column of the spot you want to place a coin on.
         For example, to move in the upper-left corner, specify '0,0'.

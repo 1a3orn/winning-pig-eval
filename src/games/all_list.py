@@ -88,6 +88,8 @@ win_first_move_games = [
         "mcts_iterations": 1500,
         "name": "Connect 3 (5x4)",
         "category": "grid"
-    },
-    
+    },   
 ]
+
+# Make subset with just Book Nim, Coin Counter, and Connect 3 (4x5)
+subset_games = [x for x in win_first_move_games if x['name'] in ["Book Nim", "Coin Counter", "Connect 3 (4x5)"]]

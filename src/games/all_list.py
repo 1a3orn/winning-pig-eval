@@ -79,13 +79,13 @@ win_first_move_games = [
     },
     {
         "game_class": ConnectThree4x5,
-        "mcts_iterations": 1500,
+        "mcts_iterations": 3000,
         "name": "Connect 3 (4x5)",
         "category": "grid"
     },
     {
         "game_class": ConnectThree5x4,
-        "mcts_iterations": 1500,
+        "mcts_iterations": 3000,
         "name": "Connect 3 (5x4)",
         "category": "grid"
     },   

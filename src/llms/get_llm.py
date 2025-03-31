@@ -10,23 +10,23 @@ def get_llm(
     temperature: float = 0.7
 ) -> BaseLLM:
 
-    if 'claude' in model:
+    if model.startswith("anthropic:"):
         llm = AnthropicAPI(
             os.getenv("ANTHROPIC_API_KEY"),
             temperature=temperature,
-            model=model
+            model=model.split(":")[1]
         )
-    elif 'deepseek' in model:
+    elif model.startswith("deepseek:"):
         llm = DeepseekAPI(
             os.getenv("DEEPSEEK_API_KEY"),
             temperature=temperature,
-            model=model
+            model=model.split(":")[1]
         )
-    elif 'gpt' in model or 'o1' in model or 'o3' in model:
+    elif model.startswith("openai:"):
         llm = OpenAIAPI(
             os.getenv("OPENAI_API_KEY"),
             temperature=temperature,
-            model=model
+            model=model.split(":")[1]
         )
     elif model == 'human_terminal':
         llm = HumanTerminal()

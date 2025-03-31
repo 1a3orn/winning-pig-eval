@@ -7,7 +7,7 @@ from play_dataclasses import GameStats
 
 def save_results(results: List[GameStats]):
     # Create results directory with timestamp
-    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M")
     base_results_dir = "results"
     results_dir = os.path.join(base_results_dir, timestamp)
     os.makedirs(results_dir, exist_ok=True)

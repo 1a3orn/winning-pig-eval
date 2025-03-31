@@ -1,42 +1,34 @@
 import asyncio
+import argparse
 from play_base import play_single_game
 from play_dataclasses import GameConfig, GameStats
 from games.all_list import win_first_move_games, subset_games
 from save_results import save_results
 
-# Constants
-NUM_GAMES = 8
-MODEL_NAMES = [
-    #"claude-3-7-sonnet-20250219",
-    #"claude-3-5-haiku-20241022",
-    #"claude-3-7-sonnet-20250219",
-    #"gemini-2.5-pro-exp-03-25",
-    "deepseek-chat",
-    #"deepseek-reasoner",
-    #"gpt-4o-2024-11-20",
-    #"gpt-4.5-preview-2025-02-27",
-    #"o3-mini-2025-01-31",
-    #"o1-2024-12-17",
-    #"claude-3-5-sonnet-20241022"
-    #"o3-mini-2025-01-31",
-    # "gpt-4o-2024-11-20",
-    #"gpt-4o-mini-2024-07-18",
-    #"human_terminal",
-]
+#"anthropic:claude-3-5-sonnet-20241022"
+#"anthropic:claude-3-7-sonnet-20250219",
+#"anthropic:claude-3-5-haiku-20241022",
+#"deepseek:deepseek-chat",
+#"deepseek:deepseek-reasoner",
+#"openai:gpt-4o-2024-11-20",
 
 async def main():
-    # Create game configs as cross product of game classes + models
+    # Set up command line argument parsing
+    parser = argparse.ArgumentParser(description='Run games with specified AI model')
+    parser.add_argument('--model_name', type=str, help='Name of the AI model to use, prefixed by the LLM provider (e.g. anthropic:claude-3-5-haiku-20241022)')
+    parser.add_argument('--num_games', type=int, default=8, help='Number of games to play')
+    args = parser.parse_args()
+
     configs = [
         GameConfig(
-            run_name=f"{game_config['name']}_{model}_{game_config['mcts_iterations']}mcts",
+            run_name=f"{game_config['name']}_{args.model_name}_{game_config['mcts_iterations']}mcts",
             game_class=game_config['game_class'],
-            model=model,
+            model=args.model_name,
             game_name=game_config['name'],
-            num_games=NUM_GAMES,
+            num_games=args.num_games,
             mcts_iterations=game_config['mcts_iterations']
         )
         for game_config in win_first_move_games
-        for model in MODEL_NAMES
     ]
     
     try:

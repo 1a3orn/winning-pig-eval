@@ -63,5 +63,3 @@ Tic Tac Toe (4x3, 3-in-a-row)         50.00           0.00          50.00       
 Turning Turtles                        0.00           0.00         100.00                   0.00            8
 Wythof's Nim                          12.50           0.00          87.50                   0.00            8
 ```
-
-You'll note they do well on different games; Claude gets 100% on Count to 21 and 0% on Kayles, while DeepSeek does the reverse.

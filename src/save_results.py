@@ -3,6 +3,7 @@ from datetime import datetime
 import json
 import pandas as pd
 from typing import List
+import subprocess
 from play_dataclasses import GameStats
 
 def save_results(results: List[GameStats]):
@@ -70,6 +71,19 @@ def save_results(results: List[GameStats]):
 
     # Print and save aggregated statistics
     with open(f"{results_dir}/aggregated_stats.txt", 'w') as f:
+        # Get git hash
+        try:
+            git_hash = subprocess.check_output(['git', 'rev-parse', 'HEAD']).decode('ascii').strip()
+            f.write(f"Git Commit Hash: {git_hash}\n")
+            f.write("=" * 80 + "\n\n")
+            print(f"Git Commit Hash: {git_hash}")
+            print("=" * 80 + "\n")
+        except subprocess.CalledProcessError:
+            f.write("Git hash not available (not a git repository or git not installed)\n")
+            f.write("=" * 80 + "\n\n")
+            print("Git hash not available (not a git repository or git not installed)")
+            print("=" * 80 + "\n")
+
         f.write("Statistics by Game:\n")
         f.write("=" * 80 + "\n")
         f.write(game_stats.to_string(float_format='%.2f'))

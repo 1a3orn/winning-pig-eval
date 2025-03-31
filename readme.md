@@ -1,8 +1,24 @@
+## Intro
+**PigBench**
+
+LLMs are notoriously bad at tic-tac-toe.  But what about other two-player perfect information games (PIGs)?
+
+I test several LLMs against 13 two-player perfect-information-games where, with perfect play, the first player can always win. As it turns out, most LLMs do quite against this task.
+
+## To Run 
+
 To run
 
 python src/play.py --model_name [model_name] --num_games [num_games]
 
 See src/llms/get_llm.py for how to add models and how to add model names.
+
+I've verified that the first player can always win both by running the games with MCTS with both players rollouts set to be very high, and also by winning myself against the MCTS. Set model_name to be human_terminal to test it out yourself.
+
+## Stats
+
+Performance of some selected models (did not test against reasoning models from OpenAI):
+![performance of models](/image.png)
 
 Per game performance from DeepSeekV3, with an average of ~45% correct:
 ```

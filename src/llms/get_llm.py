@@ -5,6 +5,8 @@ from llms.deepseek import DeepseekAPI
 from llms.anthropic import AnthropicAPI
 from llms.openai import OpenAIAPI
 from llms.human_terminal import HumanTerminal
+from llms.together import TogetherAPI
+
 def get_llm(
     model: str,
     temperature: float = 0.7
@@ -25,6 +27,12 @@ def get_llm(
     elif model.startswith("openai:"):
         llm = OpenAIAPI(
             os.getenv("OPENAI_API_KEY"),
+            temperature=temperature,
+            model=model.split(":")[1]
+        )
+    elif model.startswith("together:"):
+        llm = TogetherAPI(
+            os.getenv("TOGETHER_API_KEY"),
             temperature=temperature,
             model=model.split(":")[1]
         )

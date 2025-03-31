@@ -50,6 +50,7 @@ async def main():
                             print(f"Failed all {max_attempts} attempts for game {game_num + 1} of {config.game_name}: {str(e)}")
                         else:
                             print(f"Attempt {attempts} failed for game {game_num + 1} of {config.game_name}: {str(e)}")
+                            print(e)
                             continue
         
         save_results(results)

@@ -5,6 +5,7 @@ from llms.deepseek import DeepseekAPI
 from llms.anthropic import AnthropicAPI
 from llms.openai import OpenAIAPI
 from llms.human_terminal import HumanTerminal
+from llms.gemini import GeminiAPI
 from llms.together import TogetherAPI
 
 def get_llm(
@@ -33,6 +34,12 @@ def get_llm(
     elif model.startswith("together:"):
         llm = TogetherAPI(
             os.getenv("TOGETHER_API_KEY"),
+            temperature=temperature,
+            model=model.split(":")[1]
+        )
+    elif model.startswith("gemini:"):
+        llm = GeminiAPI(
+            os.getenv("GEMINI_API_KEY"),
             temperature=temperature,
             model=model.split(":")[1]
         )

@@ -3,7 +3,7 @@
 
 LLMs are notoriously bad at tic-tac-toe.  But what about other two-player perfect information games (PIGs)?
 
-I test several LLMs against 13 two-player perfect-information-games where, with perfect play, the first player can always win. As it turns out, most LLMs do quite against this task.
+I test several LLMs against 13 two-player perfect-information-games where, with perfect play, the first player can always win. As it turns out, most LLMs do poorly against this task.
 
 ## To Run 
 
@@ -19,6 +19,28 @@ I've verified that the first player can always win both by running the games wit
 
 Performance of some selected models (did not test against reasoning models from OpenAI):
 ![performance of models](/image.png)
+
+Per game performance from Gemini 2.5 Experimental, with an average of ~70% correct:
+```
+Statistics by Game:
+================================================================================
+                               Win Rate (%)  Draw Rate (%)  Loss Rate (%)  Invalid Move Rate (%)  Total Games
+game_name                                                                                                    
+Book Nim                             100.00           0.00           0.00                   0.00            8
+Coin Counter                           0.00           0.00         100.00                   0.00            8
+Connect 3 (4x5)                       75.00           0.00          25.00                   0.00            8
+Connect 3 (5x4)                        0.00           0.00         100.00                   0.00            8
+Count to Twenty-One                  100.00           0.00           0.00                   0.00            8
+Domineering                           50.00           0.00          50.00                   0.00            8
+Grundy's Game                        100.00           0.00           0.00                   0.00            8
+Kayles                               100.00           0.00           0.00                   0.00            8
+Subtract a Square                    100.00           0.00           0.00                   0.00            8
+Tic Tac Toe (3x4, 3-in-a-row)         75.00           0.00          25.00                   0.00            8
+Tic Tac Toe (4x3, 3-in-a-row)         87.50          12.50           0.00                   0.00            8
+Turning Turtles                       25.00           0.00          75.00                   0.00            8
+Wythof's Nim                         100.00           0.00           0.00                   0.00            8
+
+```
 
 Per game performance from DeepSeekV3, with an average of ~45% correct:
 ```

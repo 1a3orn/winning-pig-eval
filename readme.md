@@ -51,6 +51,7 @@ Total Games: 104```
 
 
 Per game performance from Gemini 2.5 Experimental, with an average win rate ~70%:
+
 ```
 Game-specific Statistics:
 ================================================================================
@@ -79,6 +80,7 @@ Invalid Move Rate: 0.0%
 Total Games: 104```
 
 Performance from Qwen-235, with an average win rate of ~58%:
+
 ```
 Game-specific Statistics:
 ================================================================================
@@ -108,6 +110,7 @@ Total Games: 104```
 
 
 Performance from GPT-4.1, with an average of 49% correct:
+
 ```
 Game-specific Statistics:
 ================================================================================
@@ -137,6 +140,7 @@ Total Games: 104```
 
 
 Per game performance from DeepSeekV3, with an average of ~45% correct:
+
 ```
 Game-specific Statistics:
 ================================================================================

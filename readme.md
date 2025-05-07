@@ -160,7 +160,8 @@ Win Rate: 45.2%
 Loss Rate: 54.8%
 Draw Rate: 0.0%
 Invalid Move Rate: 0.0%
-Total Games: 104```
+Total Games: 104
+```
 
 Per-game performance from Claude Sonnet 3.7, with an average of ~26% correct:
 

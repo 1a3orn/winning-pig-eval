@@ -4,6 +4,7 @@ from play_base import play_single_game
 from play_dataclasses import GameConfig, GameStats
 from games.all_list import win_first_move_games, subset_games
 from save_results import save_results
+import time
 
 #"anthropic:claude-3-5-sonnet-20241022"
 #"anthropic:claude-3-7-sonnet-20250219",
@@ -11,6 +12,7 @@ from save_results import save_results
 #"deepseek:deepseek-chat",
 #"deepseek:deepseek-reasoner",
 #"openai:gpt-4o-2024-11-20",
+#"deepinfra:Qwen/Qwen3-235B-A22B",
 
 async def main():
     # Set up command line argument parsing
@@ -37,8 +39,10 @@ async def main():
             print(f"{config.num_games} games {config.game_name} with {config.model}")
             for game_num in range(config.num_games):
                 attempts = 0
-                max_attempts = 3
+                max_attempts = 5
+                exponential_backoff = [0, 20, 60, 180, 300, 600]
                 while attempts < max_attempts:
+                    time.sleep(exponential_backoff[attempts])
                     try:
                         print(f"Game {game_num + 1} of {config.num_games} (Attempt {attempts + 1}/{max_attempts})")
                         stats = await play_single_game(config)

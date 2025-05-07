@@ -7,7 +7,7 @@ class OpenAIAPI(BaseLLM):
         self,
         api_key: str,
         temperature: float = 0.6,
-        max_tokens: int = 8192,
+        max_tokens: int = 32000,
         model: str = "gpt-4o"
     ):
         super().__init__(api_key, temperature, max_tokens)
@@ -20,7 +20,8 @@ class OpenAIAPI(BaseLLM):
         response = self.client.chat.completions.create(
             model=self.model,
             messages=messages,
-            #temperature=self.temperature,
+            temperature=self.temperature,
+            max_tokens=self.max_tokens,
             **kwargs
         )
         return response.choices[0].message.content

@@ -7,6 +7,8 @@ from llms.openai import OpenAIAPI
 from llms.human_terminal import HumanTerminal
 from llms.gemini import GeminiAPI
 from llms.together import TogetherAPI
+from llms.deepinfra import DeepInfraAPI
+from llms.fireworks import FireworksAPI
 
 def get_llm(
     model: str,
@@ -40,6 +42,18 @@ def get_llm(
     elif model.startswith("gemini:"):
         llm = GeminiAPI(
             os.getenv("GEMINI_API_KEY"),
+            temperature=temperature,
+            model=model.split(":")[1]
+        )
+    elif model.startswith("deepinfra:"):
+        llm = DeepInfraAPI(
+            os.getenv("DEEPINFRA_API_KEY"),
+            temperature=temperature,
+            model=model.split(":")[1]
+        )
+    elif model.startswith("fireworks:"):
+        llm = FireworksAPI(
+            os.getenv("FIREWORKS_API_KEY"),
             temperature=temperature,
             model=model.split(":")[1]
         )

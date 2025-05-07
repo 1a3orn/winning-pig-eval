@@ -24,7 +24,6 @@ Per game performance from Gemini 2.5 pro 05/06, with an average win rate of ~70%
 
 ```
 Game-specific Statistics:
-================================================================================
                                wins_rate  losses_rate  draws_rate  invalid_moves_rate  total_games
 game_name                                                                                         
 Book Nim                           100.0          0.0         0.0                 0.0            8
@@ -42,7 +41,6 @@ Turning Turtles                     62.5         37.5         0.0               
 Wythof's Nim                       100.0          0.0         0.0                 0.0            8
 
 Overall Model Statistics:
-================================================================================
 Win Rate: 70.2%
 Loss Rate: 26.0%
 Draw Rate: 1.0%
@@ -54,7 +52,6 @@ Per game performance from Gemini 2.5 Experimental, with an average win rate ~70%
 
 ```
 Game-specific Statistics:
-================================================================================
                                wins_rate  losses_rate  draws_rate  invalid_moves_rate  total_games
 game_name                                                                                         
 Book Nim                           100.0          0.0         0.0                 0.0            8
@@ -72,7 +69,6 @@ Turning Turtles                     25.0         75.0         0.0               
 Wythof's Nim                       100.0          0.0         0.0                 0.0            8
 
 Overall Model Statistics:
-================================================================================
 Win Rate: 70.2%
 Loss Rate: 28.8%
 Draw Rate: 1.0%
@@ -83,7 +79,6 @@ Performance from Qwen-235, with an average win rate of ~58%:
 
 ```
 Game-specific Statistics:
-================================================================================
                                wins_rate  losses_rate  draws_rate  invalid_moves_rate  total_games
 game_name                                                                                         
 Book Nim                            87.5          0.0         0.0                12.5            8
@@ -101,7 +96,6 @@ Turning Turtles                      0.0         87.5         0.0               
 Wythof's Nim                        87.5          0.0         0.0                12.5            8
 
 Overall Model Statistics:
-================================================================================
 Win Rate: 58.7%
 Loss Rate: 36.5%
 Draw Rate: 0.0%
@@ -113,7 +107,6 @@ Performance from GPT-4.1, with an average of 49% correct:
 
 ```
 Game-specific Statistics:
-================================================================================
                                wins_rate  losses_rate  draws_rate  invalid_moves_rate  total_games
 game_name                                                                                         
 Book Nim                            62.5         37.5         0.0                 0.0            8
@@ -131,7 +124,6 @@ Turning Turtles                      0.0        100.0         0.0               
 Wythof's Nim                        62.5         37.5         0.0                 0.0            8
 
 Overall Model Statistics:
-================================================================================
 Win Rate: 49.0%
 Loss Rate: 50.0%
 Draw Rate: 0.0%
@@ -143,7 +135,6 @@ Per game performance from DeepSeekV3, with an average of ~45% correct:
 
 ```
 Game-specific Statistics:
-================================================================================
                                wins_rate  losses_rate  draws_rate  invalid_moves_rate  total_games
 game_name                                                                                         
 Book Nim                            12.5         87.5         0.0                 0.0            8
@@ -161,7 +152,6 @@ Turning Turtles                     87.5         12.5         0.0               
 Wythof's Nim                        87.5         12.5         0.0                 0.0            8
 
 Overall Model Statistics:
-================================================================================
 Win Rate: 45.2%
 Loss Rate: 54.8%
 Draw Rate: 0.0%
@@ -172,7 +162,7 @@ Per-game performance from Claude Sonnet 3.7, with an average of ~26% correct:
 
 ```
 Game-specific Statistics:
-================================================================================
+
                                wins_rate  losses_rate  draws_rate  invalid_moves_rate  total_games
 game_name                                                                                         
 Book Nim                             0.0        100.0         0.0                 0.0            8
@@ -190,7 +180,6 @@ Turning Turtles                      0.0        100.0         0.0               
 Wythof's Nim                        12.5         87.5         0.0                 0.0            8
 
 Overall Model Statistics:
-================================================================================
 Win Rate: 26.0%
 Loss Rate: 74.0%
 Draw Rate: 0.0%

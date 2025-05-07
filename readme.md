@@ -18,9 +18,10 @@ I've verified that the first player can always win both by running the games wit
 ## Stats
 
 Performance of some selected models (did not test against reasoning models from OpenAI due to expense):
-![performance of models](/image.png)
+![performance of models](/image1.png)
 
 Per game performance from Gemini 2.5 pro 05/06, with an average win rate of ~70%:
+
 ```
 Game-specific Statistics:
 ================================================================================
@@ -75,8 +76,7 @@ Win Rate: 70.2%
 Loss Rate: 28.8%
 Draw Rate: 1.0%
 Invalid Move Rate: 0.0%
-Total Games: 104
-```
+Total Games: 104```
 
 Performance from Qwen-235, with an average win rate of ~58%:
 ```
@@ -104,8 +104,7 @@ Win Rate: 58.7%
 Loss Rate: 36.5%
 Draw Rate: 0.0%
 Invalid Move Rate: 4.8%
-Total Games: 104
-```
+Total Games: 104```
 
 
 Performance from GPT-4.1, with an average of 49% correct:
@@ -134,8 +133,7 @@ Win Rate: 49.0%
 Loss Rate: 50.0%
 Draw Rate: 0.0%
 Invalid Move Rate: 1.0%
-Total Games: 104
-```
+Total Games: 104```
 
 
 Per game performance from DeepSeekV3, with an average of ~45% correct:
@@ -164,8 +162,7 @@ Win Rate: 45.2%
 Loss Rate: 54.8%
 Draw Rate: 0.0%
 Invalid Move Rate: 0.0%
-Total Games: 104
-```
+Total Games: 104```
 
 Per-game performance from Claude Sonnet 3.7, with an average of ~26% correct:
 
@@ -194,5 +191,4 @@ Win Rate: 26.0%
 Loss Rate: 74.0%
 Draw Rate: 0.0%
 Invalid Move Rate: 0.0%
-Total Games: 104
-```
+Total Games: 104```

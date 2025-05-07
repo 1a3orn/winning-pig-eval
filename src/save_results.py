@@ -55,7 +55,7 @@ def save_results(results: List[GameStats]):
         })
         
         stats = pd.DataFrame(index=grouped.index)
-        total_games = grouped['wins'] + grouped['losses'] + grouped['draws']
+        total_games = grouped['wins'] + grouped['losses'] + grouped['draws'] + grouped['invalid_moves']
         
         stats['Win Rate (%)'] = (grouped['wins'] / total_games * 100).round(2)
         stats['Draw Rate (%)'] = (grouped['draws'] / total_games * 100).round(2)
